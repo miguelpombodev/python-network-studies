@@ -12,15 +12,18 @@ class SocketClient:
     def connect_to_server(
         self,
     ):
-        client = socket(AF_INET, SOCK_STREAM)
-        client.connect(self.server_address)
+        try:
+            client = socket(AF_INET, SOCK_STREAM)
+            client.connect(self.server_address)
 
-        send_message_in_bytes = "Hello Server!".encode()
-        client.send(send_message_in_bytes)
+            send_message_in_bytes = "Hello Server!".encode()
+            client.send(send_message_in_bytes)
 
-        data = client.recv(self.connection_buff_size)
+            data = client.recv(self.connection_buff_size)
 
-        print(f"Message received: {data}", end="\n")
+            print(f"Message received: {data}", end="\n")
+        except ConnectionRefusedError:
+            print(f"Refused connection with {self.server_address}!")
 
 
 if __name__ == "__main__":
