@@ -1,7 +1,7 @@
 from socket import socket, AF_INET, SOCK_STREAM, SOL_SOCKET, SO_REUSEADDR
 
 
-class ServerSocket:
+class SocketServer:
     def __init__(self, port: int = 8080, address: str = "localhost") -> None:
         self.backlog_length = 5
         self.host_port = port
@@ -49,5 +49,5 @@ class ServerSocket:
 
 
 if __name__ == "__main__":
-    server = ServerSocket()
+    server = SocketServer()
     server.create_connection()
